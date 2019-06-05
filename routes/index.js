@@ -1,7 +1,5 @@
 const routes = require('express').Router();
 
-// required routes
-
 // root
 routes.get('/', (req, res) => {
   res.json({'error' : false, 'message': 'Connected!'});
@@ -12,6 +10,10 @@ routes.get('/health', (req, res) => {
   res.sendStatus(200);
 });
 
+// required routes
+const posts = require('./posts');
+
 // using routes
+routes.use('/posts', posts);
 
 module.exports = routes;
