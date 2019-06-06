@@ -1,48 +1,40 @@
 export default function makePostsService({ dbRepository }) {
   const postModel = dbRepository.postModel;
   return {
-    find: () => {
-      return postModel.find()
-        .catch(error => error);
+    find: async () => {
+      return await postModel.find();
     },
     // TODO: find to text search
 
-    findById: (id) => {
-      return postModel.findById(id)
-        .catch(error => error)
+    findById: async (id) => {
+      return await postModel.findById(id);
     },
 
-    save: (post) => {
+    save: async (post) => {
       let data = new postModel();
       data.title = post.title;
       data.text = post.text;
       data.status = post.status;
 
-      return data.save()
-        .catch(error => error);
+      return await data.save();
     },
 
-    update: (id, post) => {
-      return postModel.findById(id)
-        .then(data => {
-          if (post.title !== undefined && post.title.trim() !== '') {
-            data.title = post.title;
-          }
-          if (post.text !== undefined && post.text.trim() !== '') {
-            data.text = post.text;
-          }
-          if (post.status !== undefined && post.status.trim() !== '') {
-            data.status = post.status;
-          }
-          return data
-        })
-        .then(data => data.save())
-        .catch(error => error);
+    update: async (id, post) => {
+      const data = await postModel.findById(id);
+      if (post.title !== undefined && post.title.trim() !== '') {
+        data.title = post.title;
+      }
+      if (post.text !== undefined && post.text.trim() !== '') {
+        data.text = post.text;
+      }
+      if (post.status !== undefined && post.status.trim() !== '') {
+        data.status = post.status;
+      }
+      return await data.save();
     },
 
-    remove: (id) => {
-      return postModel.remove({_id : id})
-        .catch(error => error)
+    remove: async (id) => {
+      return postModel.remove({_id : id});
     }
   };
 }
