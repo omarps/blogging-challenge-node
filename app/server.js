@@ -25,6 +25,4 @@ app.use(scopePerRequest(container));
 const routes = require('./routes');
 app.use('/api/', routes);
 
-// TODO: move to /app
-
 module.exports = app;

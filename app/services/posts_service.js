@@ -1,14 +1,25 @@
 export default function makePostsService({ dbRepository }) {
   const postModel = dbRepository.postModel;
   return {
-    find: async () => {
+    find: async ({ q = '' }) => {
+      let query = {};
+      // search by a q param on all fields. (optional)
+      if (q !== '') {
+        const qs = `.*${q}*.`;
+        query = {
+          $or:[
+            { title: { $regex: qs, $options: 'i' } },
+            { text: { $regex: qs, $options: 'i' } },
+            { status: { $regex: qs, $options: 'i' } }
+          ]
+        };
+      }
       try {
-        return await postModel.find();
+        return await postModel.find(query);
       } catch(error) {
         return error;
       }
     },
-    // TODO: find to text search
 
     findById: async (id) => {
       return await postModel.findById(id);

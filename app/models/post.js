@@ -10,7 +10,7 @@ const PostSchema = new Schema({
     enum : ['draft', 'private', 'public'],
     default: 'draft'
   }
-  // TODO: Future steps: add author
+  // TODO: Future steps: add author for user identification
 }, { timestamps: true });
 
 // Create model if not exists

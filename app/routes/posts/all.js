@@ -5,8 +5,7 @@ import { makeInvoker } from 'awilix-express';
 
 function postsApi({ postsService }) {
   return {
-    find: (req, res) => promiseResponse(postsService.find())(res, 'fetching'),
-    // TODO: search api
+    find: (req, res) => promiseResponse(postsService.find(req.query))(res, 'fetching'),
 
     save: (req, res) => promiseResponse(postsService.save(req.body))(res, 'adding'),
 
