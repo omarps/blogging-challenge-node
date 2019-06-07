@@ -15,7 +15,7 @@ export default function makePostsService({ dbRepository }) {
     },
 
     save: async (post) => {
-      let data = new postModel();
+      const data = new postModel();
       data.title = post.title;
       data.text = post.text;
       data.status = post.status;
@@ -47,7 +47,7 @@ export default function makePostsService({ dbRepository }) {
 
     remove: async (id) => {
       try {
-        return postModel.deleteOne({_id : id});
+        return postModel.deleteOne({ _id : id });
       } catch(error) {
         return error;
       }

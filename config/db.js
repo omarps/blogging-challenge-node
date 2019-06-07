@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 let mongodb_host, mongodb_port, mongodb_name;
-if(process.env.NODE_ENV === "test") {
+if(process.env.NODE_ENV === 'test') {
   mongodb_host = 'localhost';
   mongodb_port = '27017';
   mongodb_name = 'blog-test';
@@ -13,7 +13,7 @@ if(process.env.NODE_ENV === "test") {
 mongoose.Promise = global.Promise;
 
 const mongo_url =
-  `mongodb://${mongodb_host}:${mongodb_port}/${mongodb_name}?connectTimeoutMS=600000&socketTimeoutMS=600000`
+  `mongodb://${mongodb_host}:${mongodb_port}/${mongodb_name}?connectTimeoutMS=600000&socketTimeoutMS=600000`;
 
   // Connect to db
 const db = mongoose.createConnection(mongo_url);

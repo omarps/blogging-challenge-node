@@ -1,8 +1,5 @@
 require('dotenv').config();
-// TODO: add vars
 
-// TODO: add jslint
-// TODO: add jest
 const express = require('express');
 const cors = require('cors');
 const { scopePerRequest } = require('awilix-express');

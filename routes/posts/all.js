@@ -11,7 +11,7 @@ function postsApi({ postsService }) {
     save: (req, res) => promiseResponse(postsService.save(req.body))(res, 'adding'),
 
     delete: (req, res) => promiseResponse(postsService.removeAll())(res, 'removing')
-  }
+  };
 }
 
 const api = makeInvoker(postsApi);

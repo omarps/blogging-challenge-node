@@ -10,7 +10,7 @@ function postsApi({ postsService }) {
     update: (req, res) => promiseResponse(postsService.update(req.params.id, req.body))(res, 'updating'),
 
     remove: (req, res) => promiseResponse(postsService.remove(req.params.id))(res, 'deleting')
-  }
+  };
 }
 
 const api = makeInvoker(postsApi);

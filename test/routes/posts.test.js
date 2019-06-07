@@ -1,10 +1,10 @@
 require('dotenv').config();
-const should = require('should');
+require('should');
 const request = require('supertest');
 const app = require('../../server.js');
 const agent = request.agent(app);
 
-let newPost = {
+const newPost = {
   title: 'Title hook',
   text: 'Post text from hooks',
   status: 'draft'
@@ -65,7 +65,7 @@ describe('Post CRUD integration testing', function () {
           result.body.message.status.should.equal(newPost.status);
           done();
         });
-    })
+    });
   });
 
   describe('Delete a post', function () {
@@ -106,7 +106,7 @@ describe('Post CRUD integration testing', function () {
     });
 
     it('Should update the status of post by _id to public', function (done) {
-      let params = { status: 'public' };
+      const params = { status: 'public' };
       agent
         .put(`/posts/${id}`)
         .send(params)

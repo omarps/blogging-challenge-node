@@ -2,7 +2,7 @@ const routes = require('express').Router();
 
 // root
 routes.get('/', (req, res) => {
-  res.json({'error' : false, 'message': 'Connected!'});
+  res.json({ 'error' : false, 'message': 'Connected!' });
 });
 
 // health check
