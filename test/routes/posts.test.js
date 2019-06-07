@@ -1,7 +1,7 @@
 require('dotenv').config();
 require('should');
 const request = require('supertest');
-const app = require('../../server.js');
+const app = require('../../app/server.js');
 const agent = request.agent(app);
 
 const newPost = {

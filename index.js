@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const app = require('./server');
+const app = require('./app/server');
 
 // start app
 const port = process.env.REST_API_PORT || '3000';

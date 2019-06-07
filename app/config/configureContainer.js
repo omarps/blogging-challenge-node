@@ -4,8 +4,8 @@ export default function configureContainer() {
   const container = createContainer();
 
   container.loadModules([
-    ['services/*.js', Lifetime.SCOPED],
-    ['repositories/*.js', Lifetime.SINGLETON]
+    ['*/services/*.js', Lifetime.SCOPED],
+    ['*/repositories/*.js', Lifetime.SINGLETON]
   ], {
     formatName: 'camelCase'
   });
