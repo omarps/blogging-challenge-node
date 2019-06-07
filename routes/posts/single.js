@@ -1,6 +1,6 @@
 const express = require('express');
 const single = express.Router();
-import { promiseResponse } from 'routes/common';
+import { promiseResponse } from '../common';
 import { makeInvoker } from 'awilix-express';
 
 function postsApi({ postsService }) {

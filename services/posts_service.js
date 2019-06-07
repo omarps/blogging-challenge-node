@@ -2,7 +2,11 @@ export default function makePostsService({ dbRepository }) {
   const postModel = dbRepository.postModel;
   return {
     find: async () => {
-      return await postModel.find();
+      try {
+        return await postModel.find();
+      } catch(error) {
+        return error;
+      }
     },
     // TODO: find to text search
 
@@ -16,7 +20,11 @@ export default function makePostsService({ dbRepository }) {
       data.text = post.text;
       data.status = post.status;
 
-      return await data.save();
+      try {
+        return await data.save();
+      } catch(error) {
+        return error;
+      }
     },
 
     update: async (id, post) => {
@@ -30,11 +38,27 @@ export default function makePostsService({ dbRepository }) {
       if (post.status !== undefined && post.status.trim() !== '') {
         data.status = post.status;
       }
-      return await data.save();
+      try {
+        return await data.save();
+      } catch(error) {
+        return error;
+      }
     },
 
     remove: async (id) => {
-      return postModel.remove({_id : id});
+      try {
+        return postModel.remove({_id : id});
+      } catch(error) {
+        return error;
+      }
+    },
+
+    removeAll: async() => {
+      try {
+        return postModel.remove({});
+      } catch(error) {
+        return error;
+      }
     }
   };
 }

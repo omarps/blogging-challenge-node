@@ -9,8 +9,8 @@ const { scopePerRequest } = require('awilix-express');
 const bodyParser = require('body-parser');
 const compression = require('compression');
 
-import configureContainer from 'config/configureContainer'
-const container = configureContainer()
+import configureContainer from './config/configureContainer';
+const container = configureContainer();
 
 const app = express();
 app.use(bodyParser.json({ 'limit': '100mb' }));
@@ -25,8 +25,12 @@ app.use(compression());
 app.use(scopePerRequest(container));
 
 //  Connect all our routes to our application
-const routes = require('routes');
+const routes = require('./routes');
 app.use('/', routes);
 
+// TODO: move to /app
+// TODO: separate server definition from start
 app.listen(3000);
 console.log(`Listening on 3000`);
+
+module.exports = app;

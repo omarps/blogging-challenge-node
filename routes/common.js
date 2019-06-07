@@ -13,7 +13,6 @@ const responseStatusErrorJson = (res, err, operation) => {
   res.status(500).json(response);
 }
 
-// TODO: add (req, res) + log message?
 const responseSuccess = (data) => {
   let [_data, res, operation] = data;
   if (_data instanceof Error) {

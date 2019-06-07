@@ -1,8 +1,14 @@
 const mongoose = require('mongoose');
-// TODO: add variables
-const mongodb_host = 'localhost';
-const mongodb_port = '27017';
-const mongodb_name = 'blog';
+let mongodb_host, mongodb_port, mongodb_name;
+if(process.env.NODE_ENV === "test") {
+  mongodb_host = 'localhost';
+  mongodb_port = '27017';
+  mongodb_name = 'blog-test';
+} else {
+  mongodb_host = 'localhost';
+  mongodb_port = '27017';
+  mongodb_name = 'blog';
+}
 
 mongoose.Promise = global.Promise;
 
