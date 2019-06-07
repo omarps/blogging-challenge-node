@@ -23,7 +23,7 @@ app.use(scopePerRequest(container));
 
 //  Connect all our routes to our application
 const routes = require('./routes');
-app.use('/', routes);
+app.use('/api/', routes);
 
 // TODO: move to /app
 

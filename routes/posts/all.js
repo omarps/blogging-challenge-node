@@ -16,7 +16,6 @@ function postsApi({ postsService }) {
 
 const api = makeInvoker(postsApi);
 
-// TODO: move to /api
 all.route('/')
   .get(api('find'))
   .post(api('save'))

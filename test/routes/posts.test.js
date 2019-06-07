@@ -13,7 +13,7 @@ const newPost = {
 describe('Post CRUD integration testing', function () {
   before(function (done) {
     agent
-      .delete('/posts')
+      .delete('/api/posts')
       .end(function() {
         done();
       });
@@ -21,7 +21,7 @@ describe('Post CRUD integration testing', function () {
 
   after(function (done) {
     agent
-      .delete('/posts')
+      .delete('/api/posts')
       .end(function() {
         done();
       });
@@ -30,7 +30,7 @@ describe('Post CRUD integration testing', function () {
   describe('Get all post', function () {
     before(function (done) {
 			agent
-        .post('/posts')
+        .post('/api/posts')
         .send(newPost)
         .end(function() {
           done();
@@ -39,7 +39,7 @@ describe('Post CRUD integration testing', function () {
 
     it('Should get status equal success and array of post', function (done) {
       agent
-        .get('/posts')
+        .get('/api/posts')
         .expect(200)
         .end(function(_, results){
           results.body.error.should.equal(false);
@@ -55,7 +55,7 @@ describe('Post CRUD integration testing', function () {
   describe('Post a post', function () {
     it('Should allow post to post a post and return _id', function (done) {
       agent
-        .post('/posts')
+        .post('/api/posts')
         .send(newPost)
         .end(function(_, result) {
           result.body.error.should.equal(false);
@@ -72,7 +72,7 @@ describe('Post CRUD integration testing', function () {
     let id;
     before(function (done) {
 			agent
-        .post('/posts')
+        .post('/api/posts')
         .send(newPost)
         .end(function(_, result) {
           id = result.body.message._id;
@@ -82,7 +82,7 @@ describe('Post CRUD integration testing', function () {
 
     it('Should delete the post by _id', function (done) {
       agent
-        .delete(`/posts/${id}`)
+        .delete(`/api/posts/${id}`)
         .end(function(_, result) {
           result.body.error.should.equal(false);
           result.body.message.n.should.equal(1);
@@ -97,7 +97,7 @@ describe('Post CRUD integration testing', function () {
     let id;
     before(function (done) {
 			agent
-        .post('/posts')
+        .post('/api/posts')
         .send(newPost)
         .end(function(_, result) {
           id = result.body.message._id;
@@ -108,7 +108,7 @@ describe('Post CRUD integration testing', function () {
     it('Should update the status of post by _id to public', function (done) {
       const params = { status: 'public' };
       agent
-        .put(`/posts/${id}`)
+        .put(`/api/posts/${id}`)
         .send(params)
         .end(function(err, result){
           result.body.error.should.equal(false);
