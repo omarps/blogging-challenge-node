@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
 let mongodb_host, mongodb_port, mongodb_name;
 if(process.env.NODE_ENV === 'test') {
-  mongodb_host = 'localhost';
-  mongodb_port = '27017';
-  mongodb_name = 'blog-test';
+  mongodb_host = process.env.TEST_MONGODB_HOST;
+  mongodb_port = process.env.TEST_MONGODB_PORT;
+  mongodb_name = process.env.TEST_MONGODB_DBNAME;
 } else {
-  mongodb_host = 'localhost';
-  mongodb_port = '27017';
-  mongodb_name = 'blog';
+  mongodb_host = process.env.MONGODB_HOST;
+  mongodb_port = process.env.MONGODB_PORT;
+  mongodb_name = process.env.MONGODB_DBNAME;
 }
 
 mongoose.Promise = global.Promise;

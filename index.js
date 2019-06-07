@@ -1,8 +1,8 @@
 require('dotenv').config();
-// TODO: add vars
 
 const app = require('./server');
 
 // start app
-app.listen(3000);
-console.log('Listening on 3000');
+const port = process.env.REST_API_PORT || '3000';
+app.listen(port);
+console.log(`Listening on ${port}`);
