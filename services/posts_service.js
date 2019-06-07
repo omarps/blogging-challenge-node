@@ -47,7 +47,7 @@ export default function makePostsService({ dbRepository }) {
 
     remove: async (id) => {
       try {
-        return postModel.remove({_id : id});
+        return postModel.deleteOne({_id : id});
       } catch(error) {
         return error;
       }
@@ -55,7 +55,7 @@ export default function makePostsService({ dbRepository }) {
 
     removeAll: async() => {
       try {
-        return postModel.remove({});
+        return postModel.deleteMany({});
       } catch(error) {
         return error;
       }
